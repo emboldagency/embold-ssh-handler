@@ -11,7 +11,7 @@
 
 ## **Download & Usage**
 
-1. **Download** the latest `SSHHandlerApp.exe` from the [GitHub Releases page](https://github.com/emboldagency/embold-ssh/releases).  
+1. **Download** the latest `SSHHandlerApp.exe` from the [GitHub Releases page](https://github.com/emboldagency/embold-ssh-handler/releases).  
 2. **Run** `SSHHandlerApp.exe` from anywhere (no installation needed).  
 3. **Configure** your preferred terminal and profile (if using Windows Terminal).
 4. **Click "Apply"** to register the SSH protocol handler.  

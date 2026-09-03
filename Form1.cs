@@ -258,14 +258,14 @@ Remove-Item '{cleanupScript}' -Force -ErrorAction SilentlyContinue
             {
                 using var client = new HttpClient();
                 client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("EmboldSshHandler", "1.1"));
-                var response = await client.GetStringAsync("https://api.github.com/repos/emboldagency/embold-ssh/releases/latest");
+                var response = await client.GetStringAsync("https://api.github.com/repos/emboldagency/embold-ssh-handler/releases/latest");
 
                 using var doc = JsonDocument.Parse(response);
                 var tagName = doc.RootElement.GetProperty("tag_name").GetString()?.TrimStart('v');
                 var currentVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString(3);
 
                 // Always link to releases page, regardless of version status
-                linkUpdate.LinkClicked += (s, e) => Process.Start(new ProcessStartInfo("https://github.com/emboldagency/embold-ssh/releases") { UseShellExecute = true });
+                linkUpdate.LinkClicked += (s, e) => Process.Start(new ProcessStartInfo("https://github.com/emboldagency/embold-ssh-handler/releases") { UseShellExecute = true });
 
                 if (Version.TryParse(tagName, out var latestVersion) && Version.TryParse(currentVersion, out var appVersion))
                 {

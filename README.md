@@ -11,7 +11,7 @@
 
 ## **Download & Usage**
 
-1. **Download** the latest `SSHHandlerApp.exe` from the [GitHub Releases page](https://github.com/emboldagency/embold-ssh/releases).  
+1. **Download** the latest `SSHHandlerApp.exe` from the [GitHub Releases page](https://github.com/emboldagency/embold-ssh-handler/releases).  
 2. **Run** `SSHHandlerApp.exe` from anywhere (no installation needed).  
 3. **Configure** your preferred terminal and profile (if using Windows Terminal).
 4. **Click "Apply"** to register the SSH protocol handler.  
@@ -24,6 +24,21 @@
 - **Clear Button**: Removes the SSH protocol handler and optionally cleans up config files
 - **Config Storage**: Settings are saved to `%LocalAppData%\embold-ssh\config.json`
 - **Move Anywhere**: If you move the app, just click "Apply" again to update the registry
+
+## **WSL Profiles**
+
+If you pick Windows Terminal with a WSL profile (Ubuntu and friends), the handler runs
+`wsl.exe -- ssh ...` so the connection uses WSL's `ssh` and WSL's `~/.ssh/known_hosts`.
+Windows Terminal's `-p` flag only selects the tab's appearance and starting directory, so
+without this the link would open a WSL-looking tab but run Windows OpenSSH against
+`C:\Users\<you>\.ssh\known_hosts` - a common source of
+`REMOTE HOST IDENTIFICATION HAS CHANGED` for hosts you already trust in WSL.
+
+Note on keys: if you rely on a Windows-to-WSL ssh-agent relay (for example
+`wsl2-ssh-agent`) that your shell rc file starts, the relay socket won't exist until you
+have opened at least one WSL shell since boot. Open your WSL terminal once after logging
+in, or start the relay from your distro's init, otherwise agent-based auth will fail on
+the first clicked link.
 
 ## **Windows Defender Notice**
 
